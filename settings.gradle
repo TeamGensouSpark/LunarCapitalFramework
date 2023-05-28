@@ -1,8 +1,36 @@
+// from TDE
+pluginManagement {
+    repositories {
+        maven {
+            // RetroFuturaGradle
+            name 'GTNH Maven'
+            url 'http://jenkins.usrv.eu:8081/nexus/content/groups/public/'
+            allowInsecureProtocol = true
+            mavenContent {
+                includeGroup 'com.gtnewhorizons'
+                includeGroup 'com.gtnewhorizons.retrofuturagradle'
+            }
+        }
+        gradlePluginPortal()
+        mavenCentral()
+        mavenLocal()
+    }
+}
+
+plugins {
+    // Automatic toolchain provisioning
+    id 'org.gradle.toolchains.foojay-resolver-convention' version '0.4.0'
+}
+
+// Due to an IntelliJ bug, this has to be done
+// rootProject.name = archives_base_name
+rootProject.name = rootProject.projectDir.getName()
+
 
 println """
-Java 版本：${System.getProperty 'java.version'} ${System.getProperty 'os.arch'} VM ${System.getProperty 'java.vm.version'} (${System.getProperty 'java.vendor'})
+Java Version: ${System.getProperty 'java.version'} ${System.getProperty 'os.arch'} VM ${System.getProperty 'java.vm.version'} (${System.getProperty 'java.vendor'})
 JAVA_HOME：${System.getenv 'JAVA_HOME'}
-Java 路径: ${System.getProperty 'java.home'}
+Java Path: ${System.getProperty 'java.home'}
 """
 def javaEdition = "DK"
 def javac = System.getProperty('os.name').toLowerCase(Locale.ENGLISH).contains("windows") ? "\\..\\bin\\javac.exe" : "/../bin/javac"
@@ -10,7 +38,10 @@ if (!file(System.getProperty('java.home') + javac).exists()) {
     javaEdition = "RE"
 }
 if (!System.getProperty('java.version').startsWith("1.8.") || javaEdition == "RE") {
-    "你使用了 J${javaEdition} ${System.getProperty('java.version')}，请确保安装了 JDK 1.8 （不是 JRE 1.8），并且 JAVA_HOME 环境变量指向 JDK 1.8 的路径之后再构建".with {
+    """
+LISTEN: YOU ARE USEING THE [ J${javaEdition} ${System.getProperty('java.version')} ],PLEASE USE JDK 1.8 (NOT JRE 1.8),REMEMBER THAT JAVA_HOME MUST POINT TO JDK 1.8
+                            !!!!SEE https://h2sxxa.github.io/2022/10/16/mcforge1.12.2-0!!!!
+    """.with {
         println it
         throw new RuntimeException(it)
     }
