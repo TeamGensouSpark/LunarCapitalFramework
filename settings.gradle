@@ -1,6 +1,14 @@
 // from TDE
 pluginManagement {
     repositories {
+        if (use_mirror) {
+            maven {
+                name 'Ali Mirror Maven'
+                url "https://maven.aliyun.com/nexus/content/groups/public"
+                allowInsecureProtocol = true
+            }
+            //more mirror maven add here,in order to search plugins
+        }
         maven {
             // RetroFuturaGradle
             name 'GTNH Maven'

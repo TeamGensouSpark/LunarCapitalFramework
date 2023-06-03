@@ -120,7 +120,7 @@ dependencies {
         }
     }
 
-    implementation fileTree(dir:"dependencies-jar",includes:['*jar'])
+    complie fileTree(dir:"dependencies-jar",includes:['*jar'])
 }
 
 // Adds Access Transformer files to tasks
