@@ -92,6 +92,38 @@ repositories {
             includeGroup 'curse.maven'
         }
     }
+
+    if (project.use_mirror) {
+        removeIf {
+            it instanceof MavenArtifactRepository &&
+                (it.url.toString() == "https://repo.maven.apache.org/maven2/" ||
+                        it.url.toString() == "https://maven.minecraftforge.net" ||
+                        it.url.toString() == "https://libraries.minecraft.net/")
+        }
+        maven {
+            name 'Ali Mirror Maven'
+            url "https://maven.aliyun.com/nexus/content/groups/public"
+            allowInsecureProtocol = true
+        }
+        maven {
+            name 'MC Mirror Maven'
+            url "https://${mirror_maven_url}"
+            allowInsecureProtocol = true
+        }
+        //more mirror maven add here,in order to search plugins
+    }
+    maven {
+        // RetroFuturaGradle
+        name 'GTNH Maven'
+        url 'http://jenkins.usrv.eu:8081/nexus/content/groups/public/'
+        allowInsecureProtocol = true
+        mavenContent {
+            includeGroup 'com.gtnewhorizons'
+            includeGroup 'com.gtnewhorizons.retrofuturagradle'
+        }
+    }
+
+
     mavenLocal() // Must be last for caching to work
 }
 

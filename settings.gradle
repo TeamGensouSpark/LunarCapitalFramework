@@ -1,10 +1,21 @@
-// from TDE
+//Based on tde
 pluginManagement {
     repositories {
         if (use_mirror) {
+            removeIf {
+                it instanceof MavenArtifactRepository &&
+                    (it.url.toString() == "https://repo.maven.apache.org/maven2/" ||
+                            it.url.toString() == "https://maven.minecraftforge.net" ||
+                            it.url.toString() == "https://libraries.minecraft.net/")
+            }
             maven {
                 name 'Ali Mirror Maven'
                 url "https://maven.aliyun.com/nexus/content/groups/public"
+                allowInsecureProtocol = true
+            }
+            maven {
+                name 'MC Mirror Maven'
+                url "https://${mirror_maven_url}"
                 allowInsecureProtocol = true
             }
             //more mirror maven add here,in order to search plugins
@@ -20,8 +31,8 @@ pluginManagement {
             }
         }
         gradlePluginPortal()
-        mavenCentral()
         mavenLocal()
+        mavenCentral()
     }
 }
 
@@ -48,7 +59,7 @@ if (!file(System.getProperty('java.home') + javac).exists()) {
 if (!System.getProperty('java.version').startsWith("1.8.") || javaEdition == "RE") {
     """
 LISTEN: YOU ARE USEING THE [ J${javaEdition} ${System.getProperty('java.version')} ],PLEASE USE JDK 1.8 (NOT JRE 1.8),REMEMBER THAT JAVA_HOME MUST POINT TO JDK 1.8
-                            !!!!SEE https://h2sxxa.github.io/2022/10/16/mcforge1.12.2-0!!!!
+                            !!!! SEE HOW TO CONFIGUTURE YOUR JAVA_HOME !!!!
     """.with {
         println it
         throw new RuntimeException(it)
