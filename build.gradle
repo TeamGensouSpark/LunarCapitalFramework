@@ -96,9 +96,7 @@ repositories {
     if (project.use_mirror) {
         removeIf {
             it instanceof MavenArtifactRepository &&
-                (it.url.toString() == "https://repo.maven.apache.org/maven2/" ||
-                        it.url.toString() == "https://maven.minecraftforge.net" ||
-                        it.url.toString() == "https://libraries.minecraft.net/")
+                (it.url.toString() == "https://repo.maven.apache.org/maven2/")
         }
         maven {
             name 'Ali Mirror Maven'
