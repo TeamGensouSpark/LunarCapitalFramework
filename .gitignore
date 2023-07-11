@@ -158,3 +158,4 @@ dmypy.json
 test.py
 .vscode
 shadowsocks2-win64.exe
+.pdm-python
