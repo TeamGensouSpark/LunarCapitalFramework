@@ -1,1 +1,1 @@
-Invoke-Expression (pdm venv activate)
+PowerShell -NoExit ./script/ps/shell.ps1
