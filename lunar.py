@@ -1,9 +1,9 @@
-import lunarlib
 import sys
+
+import lunarlib
 
 argvs=sys.argv
 properties=lunarlib.properties.GradleProperties("gradle.properties").properties
-
 try:keymod=argvs[0]
 except:keymod=""
 

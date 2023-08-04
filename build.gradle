@@ -93,7 +93,7 @@ repositories {
         }
     }
 
-    if (project.use_mirror || project.gradle.startParameter.taskNames[0] == "MirrorSetup") {
+    if (project.use_mirror.toBoolean() || project.gradle.startParameter.taskNames[0] == "MirrorSetup") {
         removeIf {
             it instanceof MavenArtifactRepository &&
                 (it.url.toString() == "https://repo.maven.apache.org/maven2/")

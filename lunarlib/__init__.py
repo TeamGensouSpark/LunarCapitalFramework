@@ -1,8 +1,4 @@
-from . import (
-    properties,
-    tasks,
-    base,
-    )
+from . import base, properties, tasks
 
 __all__=[
     "properties",
