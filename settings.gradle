@@ -1,7 +1,7 @@
 //Based on tde
 pluginManagement {
     repositories {
-        if (use_mirror) {
+        if (use_mirror || gradle.startParameter.taskNames[0] == "MirrorSetup") {
             removeIf {
                 it instanceof MavenArtifactRepository &&
                     (it.url.toString() == "https://repo.maven.apache.org/maven2/")
