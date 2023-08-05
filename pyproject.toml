@@ -2,12 +2,12 @@
 [project]
 name = "lunar-cli"
 version = "1.0"
-description = "ues pdm run lunar *arg to manage your project"
+description = "For LunarCapitalFramework User"
 authors = [
     {name = "H2Sxxa", email = "H2Sxxa0w0@gmail.com"},
 ]
 dependencies = [
-    "Remilia[tui]>=1.2.0",
+    "Remilia[tui]>=1.2.1",
 ]
 requires-python = ">=3.8"
 license = {text = "GPL-3.0"}

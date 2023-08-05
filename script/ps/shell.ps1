@@ -1,2 +1,2 @@
 Invoke-Expression (pdm venv activate)
-python lunar.py
+python script/lunar.py

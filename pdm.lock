@@ -6,7 +6,7 @@ groups = ["default"]
 cross_platform = true
 static_urls = false
 lock_version = "4.3"
-content_hash = "sha256:575456a78d04a1faaccb7b58e895c93a980af9970f58988e69ff145cc1e1fef9"
+content_hash = "sha256:0271d7e42efdb94979d5c8e2eb9ca17659f71ee8c6c7671e445eef628010ab98"
 
 [[package]]
 name = "annotated-types"
@@ -234,7 +234,7 @@ files = [
 
 [[package]]
 name = "remilia"
-version = "1.2.0"
+version = "1.2.1"
 requires_python = ">=3.8"
 summary = "Use python with next generation api"
 dependencies = [
@@ -244,23 +244,23 @@ dependencies = [
     "typing-extensions",
 ]
 files = [
-    {file = "remilia-1.2.0-py3-none-any.whl", hash = "sha256:980a8b9890899c49d76fdafeafaa92331a674909a1b6aa1e969beef9f113e47b"},
-    {file = "remilia-1.2.0.tar.gz", hash = "sha256:5a1ea3324be2bf02efd6929d90fe5bb928dd7ec25f99f0d4ee4f38202feae377"},
+    {file = "remilia-1.2.1-py3-none-any.whl", hash = "sha256:0727abedc3b69783b22c4d17ac22693bf78b12caad050733d374032d065d4bc5"},
+    {file = "remilia-1.2.1.tar.gz", hash = "sha256:c35388c2ab2dce9c6e40defeafe0b907b6cf4f97f13d2c904ef49e034b03ec3d"},
 ]
 
 [[package]]
 name = "remilia"
-version = "1.2.0"
+version = "1.2.1"
 extras = ["tui"]
 requires_python = ">=3.8"
 summary = "Use python with next generation api"
 dependencies = [
-    "Remilia==1.2.0",
+    "Remilia==1.2.1",
     "noneprompt",
 ]
 files = [
-    {file = "remilia-1.2.0-py3-none-any.whl", hash = "sha256:980a8b9890899c49d76fdafeafaa92331a674909a1b6aa1e969beef9f113e47b"},
-    {file = "remilia-1.2.0.tar.gz", hash = "sha256:5a1ea3324be2bf02efd6929d90fe5bb928dd7ec25f99f0d4ee4f38202feae377"},
+    {file = "remilia-1.2.1-py3-none-any.whl", hash = "sha256:0727abedc3b69783b22c4d17ac22693bf78b12caad050733d374032d065d4bc5"},
+    {file = "remilia-1.2.1.tar.gz", hash = "sha256:c35388c2ab2dce9c6e40defeafe0b907b6cf4f97f13d2c904ef49e034b03ec3d"},
 ]
 
 [[package]]
