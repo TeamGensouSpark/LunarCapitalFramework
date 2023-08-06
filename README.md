@@ -4,9 +4,12 @@
 </div>
 <div align=center>
   <img src="https://img.shields.io/badge/python-3.8+-blue" alt="python">
-  <img src="https://img.shields.io/badge/minecraft-1.12.2-green" alt="minecraft">
+  <img src="https://img.shields.io/badge/minecraftforge-1.12.2@2859-green" alt="minecraft">
+  <img src="https://img.shields.io/badge/Gradle-8+-white" alt="minecraft">
+  <img src="https://img.shields.io/badge/RetroFuturaGradle-1.3.24-red" alt="minecraft">
   <img src="https://img.shields.io/github/actions/workflow/status/TeamGensouSpark/LunarCapitalFramework/build.yml" alt="CI Status">
 </div>
+
 
 ## Noitce
 
