@@ -1,1 +1,1 @@
-python script/lunar.py
+PowerShell -NoExit ./script/ps/shell.ps1

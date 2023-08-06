@@ -22,6 +22,14 @@ class PageGradle(ScreenBase):
                         "gradle.runmirror",
                         lambda: PageGradleMultTasks(self, GradleExecuter(True)).draw(),
                     ),
+                    Pair(
+                        "gradle.runcustom",
+                        lambda: PageGradleInput(self, GradleExecuter(False)).draw(),
+                    ),
+                    Pair(
+                        "gradle.runmirrorcustom",
+                        lambda: PageGradleInput(self, GradleExecuter(True)).draw(),
+                    ),
                 ]
             ],
         ).prompt().data()
@@ -50,19 +58,30 @@ class PageGradleMultTasks(ScreenBase):
         self.executer = executer
 
     def draw(self) -> None:
-        prompts.ListPrompt(
-            question=get_translation("chosetask.question"),
-            choices=[
-                prompts.Choice(get_translation(items_pair.name), items_pair.value)
-                for items_pair in [
-                    Pair("gradle.init", lambda: self.executer.runTask()),
-                    Pair(
-                        "gradle.runmirror",
-                        lambda: self.executer.runTask("setupDecompWorkspace"),
-                    ),
-                ]
-            ],
-        ).prompt().data()
+        self.executer.runTask(
+            *[
+                choice.data
+                for choice in prompts.CheckboxPrompt(
+                    question=get_translation("chosetask.question"),
+                    choices=[
+                        prompts.Choice(
+                            get_translation(items_pair.name), items_pair.value
+                        )
+                        for items_pair in [
+                            Pair("gradle.init", None),
+                            Pair(
+                                "gradle.setup",
+                                "setupDecompWorkspace",
+                            ),
+                            Pair("gradle.eclipse", "eclipse"),
+                            Pair("gradle.idea", "idea"),
+                            Pair("gradle.build", "build"),
+                        ]
+                    ],
+                ).prompt()
+                if choice.data != None
+            ]
+        )
         return self.back()
 
 
@@ -76,5 +95,9 @@ class PageGradleInput(ScreenBase):
         self.executer = executer
 
     def draw(self) -> None:
-        prompts.InputPrompt(question="")
+        self.executer.runTask(
+            prompts.InputPrompt(
+                question=get_translation("gradle.input"), default_text=""
+            ).prompt()
+        )
         return self.back()

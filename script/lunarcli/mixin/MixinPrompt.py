@@ -2,23 +2,12 @@ from Remilia.mixin import Inject, At, Mixin, EnumCOChar
 from Remilia.utils.cli import prompts
 
 
-from typing import List, Optional, Callable
-from gettext import gettext as _
-
-
 @Mixin(prompts.ListPrompt)
 class MixinListPrompt:
     @Inject.withValue(
         at=At.END,
         method="__init__",
-        namespace={
-            "List": List,
-            "Choice": prompts.Choice,
-            "RT": prompts._base.RT,
-            "Optional": Optional,
-            "Callable": Callable,
-            "_": _,
-        },
+        namespace=prompts.list.__dict__
     )
     def oninit(self):
         self.question_mark = "[@]"
