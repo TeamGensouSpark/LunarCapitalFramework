@@ -1,3 +1,3 @@
-from . import MixinPrompt
+from . import MixinPrompt,MixinZipFile
 
-__all__=["MixinPrompt"]
+__all__=["MixinPrompt","MixinZipFile"]
