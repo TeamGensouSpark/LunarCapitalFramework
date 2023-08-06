@@ -20,10 +20,10 @@ class MixinBasePrompt:
         method="prompt",
         insertline=-2,
         namespace=prompts._base.__dict__,
-        
     )
     def onprompt():
         EnumCOChar.SPACE4;from colorama import Fore as cFore
         EnumCOChar.SPACE4;from colorama import Style as cStyle
-        EnumCOChar.SPACE4;print(cFore.LIGHTRED_EX+"[!] 程序已终止"+cStyle.RESET_ALL)
+        EnumCOChar.SPACE4;from lunarcli.config.database import get_translation
+        EnumCOChar.SPACE4;print(cFore.LIGHTRED_EX+"[!] %s" % get_translation("global.exit") + cStyle.RESET_ALL)
         EnumCOChar.SPACE4;exit(0)

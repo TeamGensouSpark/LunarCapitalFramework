@@ -1,2 +1,4 @@
+cd script/lunar-cli
 Invoke-Expression (pdm venv activate)
-python script/lunar.py
+cd ../..
+python script/lunar-cli/lunar.py

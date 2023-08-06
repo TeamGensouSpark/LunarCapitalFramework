@@ -12,3 +12,7 @@ gradle.runcustom: "运行自定义命令"
 gradle.runmirrorcustom: "运行自定义命令（镜像）"
 gradle.input: "输入命令"
 patch.confirm: "使用此功能前你必须对Gradle进行初始化，你确认初始化过了吗？"
+
+
+global.exittip: "输入CTRL+C可以快速退出程序"
+global.exit: "程序已终止"
