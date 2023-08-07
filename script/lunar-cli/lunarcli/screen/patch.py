@@ -17,9 +17,14 @@ class PagePatch(ScreenBase):
     def patch(self):
         patchinfo = self.getInfo()
         print(patchinfo)
-        
+    
+    def findJar(self):
+        pass
+    
     def getInfo(self):
         _tmp = loads(rFile("%s/data/class/package.json" % ROOT_DIR).text)
         return PatchInfo(
             name=_tmp["name"], package=_tmp["package"], manifest=_tmp["manifest"]
         )
+
+
