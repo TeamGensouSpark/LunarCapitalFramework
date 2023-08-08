@@ -7,6 +7,8 @@ from Remilia.utils.cli import prompts
 from Remilia.res import rFile
 from json import loads
 
+from requests import get
+
 
 class PagePatch(ScreenBase):
     def draw(self) -> None:
@@ -19,6 +21,9 @@ class PagePatch(ScreenBase):
         print(patchinfo)
     
     def findJar(self):
+        pass
+    
+    def prepareInject(self):
         pass
     
     def getInfo(self):
