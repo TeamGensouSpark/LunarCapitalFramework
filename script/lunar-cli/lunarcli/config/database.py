@@ -1,9 +1,9 @@
 from Remilia.structdb import DataBase, YamlStruct
 from Remilia.base.rtypes import VT
 
-from lunarcli.base.consts import CONFIG_NAME, ROOT_DIR
+from lunarcli.base.consts import CONFIG_NAME, DATA_DIR
 
-LunarDBroot = DataBase("%s/data" % ROOT_DIR, struct=YamlStruct)
+LunarDBroot = DataBase(DATA_DIR, struct=YamlStruct)
 
 translation = LunarDBroot.cget_cate("i18n")
 
@@ -24,4 +24,6 @@ def reset_config() -> None:
 
 
 def get_translation(key: str) -> str:
+    if not translation.readdict(get_config("i18n")).__contains__(key):
+        return key
     return translation.readkv(get_config("i18n"), key)

@@ -6,9 +6,10 @@ if rPath(".").absolute().to_string().split("\\")[-1] == "lunar-cli":
     chdir(rPath(".").absolute().parent.absolute().parent.absolute())
 
 from lunarcli.config.database import *
+from lunarcli.screen.promptlog import *
 from lunarcli.screen.home import PageHome
 
-print(_.Fore.LIGHTGREEN_EX + "[!] %s" % get_translation("global.exittip") + _.Style.RESET_ALL)
+info(get_translation("global.exittip"))
 
 # reset_config()
 PageHome(None).draw()

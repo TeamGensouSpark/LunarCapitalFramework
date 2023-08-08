@@ -157,5 +157,5 @@ dmypy.json
 
 test.py
 .vscode
-shadowsocks2-win64.exe
+script/lunar-cli/data/cache/*
 .pdm-python

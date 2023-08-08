@@ -1,18 +1,4 @@
 {
     "package": "com.gtnewhorizons/retrofuturagradle",
-    "name": "retrofuturagradle",
-    "manifest": [
-        {
-            "name": "Constants.class",
-            "location": "com/gtnewhorizons/retrofuturagradle/Constants.class"
-        },
-        {
-            "name": "DownloadAssetsTask.class",
-            "location": "com/gtnewhorizons/retrofuturagradle/minecraft/DownloadAssetsTask.class"
-        },
-        {
-            "name": "MinecraftTasks.class",
-            "location": "com/gtnewhorizons/retrofuturagradle/minecraft/MinecraftTasks.class"
-        }
-    ]
+    "name": "retrofuturagradle"
 }

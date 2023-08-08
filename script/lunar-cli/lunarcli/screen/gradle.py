@@ -3,8 +3,7 @@ from lunarcli.base.tui import ScreenBase
 from Remilia.utils.cli import prompts
 
 from lunarcli.config.database import get_translation
-
-from Remilia.base.rtypes import Pair
+from lunarcli.screen.back import getBackfromS
 
 
 class PageGradle(ScreenBase):
@@ -12,25 +11,23 @@ class PageGradle(ScreenBase):
         prompts.ListPrompt(
             question=get_translation("chosetask.question"),
             choices=[
-                prompts.Choice(get_translation(items_pair.name), items_pair.value)
-                for items_pair in [
-                    Pair(
-                        "gradle.run",
-                        lambda: PageGradleMultTasks(self, GradleExecuter(False)).draw(),
-                    ),
-                    Pair(
-                        "gradle.runmirror",
-                        lambda: PageGradleMultTasks(self, GradleExecuter(True)).draw(),
-                    ),
-                    Pair(
-                        "gradle.runcustom",
-                        lambda: PageGradleInput(self, GradleExecuter(False)).draw(),
-                    ),
-                    Pair(
-                        "gradle.runmirrorcustom",
-                        lambda: PageGradleInput(self, GradleExecuter(True)).draw(),
-                    ),
-                ]
+                prompts.Choice(
+                    get_translation("gradle.run"),
+                    lambda: PageGradleMultTasks(self, GradleExecuter(False)).draw(),
+                ),
+                prompts.Choice(
+                    get_translation("gradle.runmirror"),
+                    lambda: PageGradleMultTasks(self, GradleExecuter(True)).draw(),
+                ),
+                prompts.Choice(
+                    get_translation("gradle.runcustom"),
+                    lambda: PageGradleMultTasks(self, GradleExecuter(False)).draw(),
+                ),
+                prompts.Choice(
+                    get_translation("gradle.runmirrorcustom"),
+                    lambda: PageGradleMultTasks(self, GradleExecuter(True)).draw(),
+                ),
+                getBackfromS(self)
             ],
         ).prompt().data()
         return self.back()
@@ -64,19 +61,13 @@ class PageGradleMultTasks(ScreenBase):
                 for choice in prompts.CheckboxPrompt(
                     question=get_translation("chosetask.question"),
                     choices=[
+                        prompts.Choice(get_translation("gradle.init"), None),
                         prompts.Choice(
-                            get_translation(items_pair.name), items_pair.value
-                        )
-                        for items_pair in [
-                            Pair("gradle.init", None),
-                            Pair(
-                                "gradle.setup",
-                                "setupDecompWorkspace",
-                            ),
-                            Pair("gradle.eclipse", "eclipse"),
-                            Pair("gradle.idea", "idea"),
-                            Pair("gradle.build", "build"),
-                        ]
+                            get_translation("gradle.setup"), "setupDecompWorkspace"
+                        ),
+                        prompts.Choice(get_translation("gradle.eclipse"), "eclipse"),
+                        prompts.Choice(get_translation("gradle.idea"), "idea"),
+                        prompts.Choice(get_translation("gradle.build"), "build"),
                     ],
                 ).prompt()
                 if choice.data != None

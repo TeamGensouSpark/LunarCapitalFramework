@@ -1,11 +1,16 @@
 from typing import Union
+from os import listdir
 from Remilia.utils.cli import prompts
-from Remilia.base.rtypes import Pair
+from Remilia.res import rPath, rFile
 from lunarcli.base.tui import ScreenBase
 from lunarcli.config.database import get_translation
+from lunarcli.base.consts import CACHE_DIR
+
+from shutil import rmtree
 
 from .gradle import PageGradle
 from .patch import PagePatch
+
 
 class PageHome(ScreenBase):
     def __init__(self, superscreen: Union[None, ScreenBase]) -> None:
@@ -15,11 +20,31 @@ class PageHome(ScreenBase):
         prompts.ListPrompt(
             question=get_translation("chosetask.question"),
             choices=[
-                prompts.Choice(get_translation(items_pair.name), items_pair.value)
-                for items_pair in [
-                    Pair("home.gradle", lambda: PageGradle(self).draw()),
-                    Pair("home.patch", lambda: PagePatch(self).draw()),
-                ]
+                prompts.Choice(
+                    get_translation("home.gradle"), lambda: PageGradle(self).draw()
+                ),
+                prompts.Choice(
+                    get_translation("home.patch"), lambda: PagePatch(self).draw()
+                ),
+                prompts.Choice(
+                    get_translation("home.emptycache"),
+                    lambda: self.draw()
+                    if not prompts.ConfirmPrompt(
+                        question=get_translation("home.emptycache.question"),
+                        default_choice=False,
+                    ).prompt()
+                    else self.afterclean([
+                        rFile("%s/%s" % (CACHE_DIR, name)).unlink()
+                        if rPath("%s/%s" % (CACHE_DIR, name)).is_file()
+                        else rmtree("%s/%s" % (CACHE_DIR, name))
+                        for name in listdir(CACHE_DIR)
+                    ]),
+                ),
             ],
         ).prompt().data()
         return super().draw()
+    
+    def afterclean(self,_):
+        del _
+        rFile("%s/.keep" % CACHE_DIR).write()
+        self.draw()

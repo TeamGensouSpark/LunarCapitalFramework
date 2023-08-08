@@ -1,6 +1,10 @@
 chosetask.question: "选择一个任务以继续"
 home.gradle: "Gradle 终端"
 home.patch: "镜像修补"
+home.emptycache: "清理缓存"
+
+home.emptycache.question: "该操作会清空 lunar-cli 的缓存文件夹，你确认吗"
+
 gradle.run: "运行Gradle命令"
 gradle.runmirror: "运行Gradle命令（镜像）"
 gradle.init: "初始化"
@@ -11,8 +15,17 @@ gradle.build: "编译导出"
 gradle.runcustom: "运行自定义命令"
 gradle.runmirrorcustom: "运行自定义命令（镜像）"
 gradle.input: "输入命令"
-patch.confirm: "使用此功能前你必须对Gradle进行初始化，你确认初始化过了吗？"
+patch.confirm: "⚠ 使用此功能前你必须对Gradle进行初始化，你确认初始化过了吗？"
 
+patch.requesttool.question: "环境里没有检测到用于注入的 7za.exe，选择一种方式下载"
+patch.requesttool.raw: "Github 上下载"
+patch.requesttool.mirror: "Github 上下载（镜像）"
+patch.requesttool.custom: "自定义下载地址"
+patch.requesttool.custom.question: "输入自定义下载地址"
+patch.multirfg: "获取到复数个RFG，请选择你需要修补的对象"
 
 global.exittip: "输入CTRL+C可以快速退出程序"
 global.exit: "程序已终止"
+global.back: "返回"
+
+global.error.notfoundrfg: "没有找到RetroFuturaGradle（初始化?）"
