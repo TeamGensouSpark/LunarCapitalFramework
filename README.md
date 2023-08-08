@@ -10,11 +10,6 @@
   <img src="https://img.shields.io/github/actions/workflow/status/TeamGensouSpark/LunarCapitalFramework/build.yml" alt="CI Status">
 </div>
 
-
-## Noitce
-
-Not Ready to use but nearly
-
 ## What's this?
 
 A fork MDK,aim to make the legacy modder develop mods more fluently.
