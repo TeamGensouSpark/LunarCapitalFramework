@@ -10,11 +10,6 @@
   <img src="https://img.shields.io/github/actions/workflow/status/TeamGensouSpark/LunarCapitalFramework/build.yml" alt="CI Status">
 </div>
 
-
-## Noitce
-
-Not Ready to use but nearly
-
 ## What's this?
 
 A fork MDK,aim to make the legacy modder develop mods more fluently.
@@ -27,8 +22,13 @@ A fork MDK,aim to make the legacy modder develop mods more fluently.
 4. Run lunar.ps1 and use our cli tool
 5. Enjoy!
 
+PS: Remember to set JAVA_HOME to JDK 1.8.0
+
+### JDK
+
+ - [Liberica JDK](https://download.bell-sw.com/java/8u382+6/bellsoft-jdk8u382+6-windows-amd64-full.msi)
+
 ## Credits
 
-[TemplateDevEnv](https://github.com/CleanroomMC/TemplateDevEnv)
-
-[IdeallandFramework](https://github.com/IdeallandEarthDept/IdeallandFramework)
+ - [TemplateDevEnv](https://github.com/CleanroomMC/TemplateDevEnv)
+ - [IdeallandFramework](https://github.com/IdeallandEarthDept/IdeallandFramework)
