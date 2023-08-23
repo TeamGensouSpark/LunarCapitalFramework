@@ -1,5 +1,5 @@
 from Remilia.structdb import DataBase, YamlStruct
-from Remilia.base.rtypes import VT
+from Remilia.base.typings import VT
 
 from lunarcli.base.consts import CONFIG_NAME, DATA_DIR
 

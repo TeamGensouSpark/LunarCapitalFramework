@@ -7,7 +7,7 @@ authors = [
     {name = "H2Sxxa", email = "H2Sxxa0w0@gmail.com"},
 ]
 dependencies = [
-    "Remilia[tui]==1.2.1",
+    "Remilia[tui]==1.2.2.1",
     "requests"
 ]
 requires-python = ">=3.8"

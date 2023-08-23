@@ -26,16 +26,16 @@ class PagePatch(ScreenBase):
             self.patch()
         return self.back()
 
-    def patch(self):
+    def patch(self,undermirror=False):
         patchinfo = self.getInfo()
         archive = self.findJar(patchinfo.package, patchinfo.name)
-        self.prepareInject()
+        self.prepareInject(undermirror)
         SZExecuter.addFile("%s/%s" % (CLASS_DIR, patchinfo.name), archive)
         try:
             rmtree(USERPROFILE + "/.gradle/caches/jars-9")
         except:
             pass
-        
+
     def findJar(self, package: str, name: str) -> str:
         result = list(
             rDir(
@@ -57,34 +57,37 @@ class PagePatch(ScreenBase):
         else:
             return str(result[0])
 
-    def prepareInject(self):
+    def prepareInject(self, undermirror: bool = False):
         if not rPath(JAR_TOOL).exists():
-            resp = get(
-                prompts.ListPrompt(
-                    question=get_translation("patch.requesttool.question"),
-                    choices=[
-                        prompts.Choice(
-                            get_translation("patch.requesttool.raw"),
-                            lambda: JAR_TOOL_URL,
-                        ),
-                        prompts.Choice(
-                            get_translation("patch.requesttool.mirror"),
-                            lambda: GITHUB_MIRROR + JAR_TOOL_URL,
-                        ),
-                        prompts.Choice(
-                            get_translation("patch.requesttool.custom"),
-                            lambda: prompts.InputPrompt(
-                                question=get_translation(
-                                    "patch.requesttool.custom.question"
-                                ),
-                                default_text=GITHUB_MIRROR + JAR_TOOL_URL,
-                            ).prompt(),
-                        ),
-                    ],
+            if not undermirror:
+                resp = get(
+                    prompts.ListPrompt(
+                        question=get_translation("patch.requesttool.question"),
+                        choices=[
+                            prompts.Choice(
+                                get_translation("patch.requesttool.raw"),
+                                lambda: JAR_TOOL_URL,
+                            ),
+                            prompts.Choice(
+                                get_translation("patch.requesttool.mirror"),
+                                lambda: GITHUB_MIRROR + JAR_TOOL_URL,
+                            ),
+                            prompts.Choice(
+                                get_translation("patch.requesttool.custom"),
+                                lambda: prompts.InputPrompt(
+                                    question=get_translation(
+                                        "patch.requesttool.custom.question"
+                                    ),
+                                    default_text=GITHUB_MIRROR + JAR_TOOL_URL,
+                                ).prompt(),
+                            ),
+                        ],
+                    )
+                    .prompt()
+                    .data()
                 )
-                .prompt()
-                .data()
-            )
+            else:
+                resp = get(GITHUB_MIRROR + JAR_TOOL_URL)
             rFile(JAR_TOOL).write_bytes(resp.content)
 
     def getInfo(self):

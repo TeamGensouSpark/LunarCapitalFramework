@@ -8,8 +8,9 @@ from lunarcli.base.consts import CACHE_DIR
 
 from shutil import rmtree
 
-from .gradle import PageGradle
+from .gradle import GradleExecuter, PageGradle
 from .patch import PagePatch
+from .promptlog import info
 
 
 class PageHome(ScreenBase):
@@ -33,18 +34,31 @@ class PageHome(ScreenBase):
                         question=get_translation("home.emptycache.question"),
                         default_choice=False,
                     ).prompt()
-                    else self.afterclean([
-                        rFile("%s/%s" % (CACHE_DIR, name)).unlink()
-                        if rPath("%s/%s" % (CACHE_DIR, name)).is_file()
-                        else rmtree("%s/%s" % (CACHE_DIR, name))
-                        for name in listdir(CACHE_DIR)
-                    ]),
+                    else self.afterclean(
+                        [
+                            rFile("%s/%s" % (CACHE_DIR, name)).unlink()
+                            if rPath("%s/%s" % (CACHE_DIR, name)).is_file()
+                            else rmtree("%s/%s" % (CACHE_DIR, name))
+                            for name in listdir(CACHE_DIR)
+                        ]
+                    ),
+                ),
+                prompts.Choice(
+                    get_translation("home.auto"), lambda: self.autoConfigure()
                 ),
             ],
         ).prompt().data()
         return super().draw()
-    
-    def afterclean(self,_):
+
+    def afterclean(self, _):
         del _
         rFile("%s/.keep" % CACHE_DIR).write()
         self.draw()
+
+    def autoConfigure(self):
+        mge = GradleExecuter(True)
+        mge.runTask()
+        PagePatch(self).patch(True)
+        mge.runTask("setupDecompWorkspace", "eclipse", "idea", "build")
+        info("已完成")
+        return self.draw()
