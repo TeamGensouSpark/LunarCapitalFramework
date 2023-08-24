@@ -92,7 +92,15 @@ repositories {
             includeGroup 'curse.maven'
         }
     }
-
+    
+    maven {
+        name 'Modrinth'
+        url "https://api.modrinth.com/maven"
+        content {
+            includeGroup 'maven.modrinth'
+        }
+    }
+    
     if (project.use_mirror.toBoolean() || project.gradle.startParameter.taskNames[0] == "mirrorSetup") {
         removeIf {
             it instanceof MavenArtifactRepository &&
