@@ -143,7 +143,7 @@ dependencies {
     }
 
     if (project.use_kekkai.toBoolean()) {
-        implementation 'maven.modrinth:kekkai:1.2.1'
+        implementation 'maven.modrinth:kekkai:1.2.2'
     }
 
     // Example of deobfuscating a dependency
