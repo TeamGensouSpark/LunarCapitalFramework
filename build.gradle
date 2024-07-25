@@ -6,7 +6,7 @@ plugins {
     id 'maven-publish'
     id 'org.jetbrains.gradle.plugin.idea-ext' version '1.1.7'
     id 'eclipse'
-    id 'com.gtnewhorizons.retrofuturagradle' version '1.3.24'
+    id 'com.gtnewhorizons.retrofuturagradle' version '1.4.0'
     id 'com.matthewprenger.cursegradle' version '1.4.0'
 }
 
@@ -36,7 +36,7 @@ configurations {
 }
 
 minecraft {
-    mcVersion = '1.12.2'
+    mcVersion.set('1.12.2')
 
     // MCP Mappings
     mcpMappingChannel = 'stable'
@@ -121,7 +121,7 @@ repositories {
     maven {
         // RetroFuturaGradle
         name 'GTNH Maven'
-        url 'http://jenkins.usrv.eu:8081/nexus/content/groups/public/'
+        url 'https://nexus.gtnewhorizons.com/repository/public/'
         allowInsecureProtocol = true
         mavenContent {
             includeGroup 'com.gtnewhorizons'
@@ -139,7 +139,7 @@ dependencies {
     }
 
     if (project.use_mixins.toBoolean()) {
-        implementation 'zone.rong:mixinbooter:8.3'
+        implementation 'zone.rong:mixinbooter:9.1'
     }
 
     if (project.use_kekkai.toBoolean()) {
