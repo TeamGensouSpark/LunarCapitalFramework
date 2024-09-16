@@ -1,17 +1,16 @@
 
 [project]
+dependencies = [
+    # "Remilia[tui] @ git+https://github.com/H2Sxxa/Remilia.git@v1.2.2.1",
+    "Remilia[tui] @ file:///${PROJECT_ROOT}/Remilia-1.2.2.1",
+    "requests",
+]
 name = "lunar-cli"
 version = "1.0"
 description = "For LunarCapitalFramework User"
-authors = [
-    {name = "H2Sxxa", email = "H2Sxxa0w0@gmail.com"},
-]
-dependencies = [
-    "Remilia[tui]==1.2.2.1",
-    "requests"
-]
+authors = [{ name = "H2Sxxa", email = "H2Sxxa0w0@gmail.com" }]
 requires-python = ">=3.8"
-license = {text = "GPL-3.0"}
+license = { text = "GPL-3.0" }
 
 [tool.setuptools]
 py-modules = ["lunarcli"]
