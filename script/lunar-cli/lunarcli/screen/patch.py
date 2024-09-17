@@ -9,7 +9,7 @@ from lunarcli.base.models import PatchInfo
 from lunarcli.base.tui import ScreenBase
 from lunarcli.config.database import get_translation
 from lunarcli.config.env import USERPROFILE
-from lunarcli.screen.promptlog import *
+from lunarcli.screen.promptlog import error
 
 from Remilia.utils.cli import prompts
 from Remilia.res import rFile, rPath, rDir
@@ -26,14 +26,14 @@ class PagePatch(ScreenBase):
             self.patch()
         return self.back()
 
-    def patch(self,undermirror=False):
+    def patch(self, undermirror=False):
         patchinfo = self.getInfo()
         archive = self.findJar(patchinfo.package, patchinfo.name)
         self.prepareInject(undermirror)
         SZExecuter.addFile("%s/%s" % (CLASS_DIR, patchinfo.name), archive)
         try:
             rmtree(USERPROFILE + "/.gradle/caches/jars-9")
-        except:
+        except Exception:
             pass
 
     def findJar(self, package: str, name: str) -> str:
